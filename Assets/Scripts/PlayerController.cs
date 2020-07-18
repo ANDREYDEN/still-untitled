@@ -16,37 +16,38 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        Vector3 deltaMovement = transform.TransformDirection(new Vector3(joystick.Horizontal, 0, joystick.Vertical) * movementSpeed);
-        Move(deltaMovement);
-
-        _cameraY = GetCameraRotation();
-        transform.eulerAngles = Vector3.up * _cameraY;
+        Move();
+        Rotate();
     }
 
-    private void Move(Vector3 deltaMovement)
+    private void Move()
     {
+        Vector3 deltaMovement = transform.TransformDirection(new Vector3(joystick.Horizontal, 0, joystick.Vertical) * movementSpeed);
+
         transform.position += deltaMovement;
         Time.timeScale = deltaMovement.magnitude;
         Time.fixedDeltaTime *= Time.timeScale;
     }
 
-    private float GetCameraRotation()
+    private void Rotate()
     {
+        float newY = 0;
         if (Application.platform == RuntimePlatform.WindowsEditor)
         {
             if (Input.GetKey(KeyCode.LeftArrow))
             {
-                return _cameraY - rotationSpeed;
+                newY = transform.eulerAngles.y + rotationSpeed;
             }
             if (Input.GetKey(KeyCode.RightArrow))
             {
-                return _cameraY + rotationSpeed;
+                newY = transform.eulerAngles.y - rotationSpeed;
             }
         }
         if (Application.platform == RuntimePlatform.Android)
         {
-            return Input.compass.magneticHeading;
+            newY = Input.compass.magneticHeading;
         }
-        return _cameraY;
+        
+        transform.eulerAngles = Vector3.up * newY;
     }
 }
