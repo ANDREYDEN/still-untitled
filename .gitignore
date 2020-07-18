@@ -1,0 +1,51 @@
+# =============== #
+# Builds          #
+# =============== #
+*.apk
+builds/
+ios-build/
+.vs/
+
+# =============== #
+# GitEye          #
+# =============== #
+/.project
+
+# =============== #
+# Unity Library   #
+# =============== #
+Library/
+
+# =============== #
+# Unity temp      #
+# =============== #
+Temp/
+Logs/ 
+#Assets/Plugins.meta
+#Assets/Plugins/
+Assets/Plugins/Editor/
+Assets/Plugins/Editor.meta
+
+# ===================================== #
+# Visual Studio / MonoDevelop generated #
+# ===================================== #
+.idea/
+ExportedObj/
+obj/
+*.svd
+*.userprefs
+*.csproj
+*.pidb
+*.suo
+*.sln
+*.user
+*.unityproj
+*.booproj
+
+# ============ #
+# OS generated #
+# ============ #
+.DS_Store
+.DS_Store?
+Assembly-CSharp.csproj.DotSettings
+Assets/Plugins/iOS.meta
