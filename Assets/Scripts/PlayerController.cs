@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    const float DELTA_Y = 0.1f;
+    const float DELTA_Y = 1f;
     private float _cameraY = 0;
 
     void Update()
@@ -20,11 +20,11 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.LeftArrow))
             {
-                return _cameraY + DELTA_Y;
+                return _cameraY - DELTA_Y;
             }
             if (Input.GetKey(KeyCode.RightArrow))
             {
-                return _cameraY - DELTA_Y;
+                return _cameraY + DELTA_Y;
             }
         }
         if (Application.platform == RuntimePlatform.Android)
