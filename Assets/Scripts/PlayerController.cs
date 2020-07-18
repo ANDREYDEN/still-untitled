@@ -22,11 +22,11 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        Vector3 deltaMovement = transform.TransformDirection(new Vector3(joystick.Horizontal, 0, joystick.Vertical) * movementSpeed);
+        Vector3 deltaJoystick = new Vector3(joystick.Horizontal, 0, joystick.Vertical);
+        Vector3 deltaMovement = transform.TransformDirection(deltaJoystick * movementSpeed);
 
         transform.position += deltaMovement;
-        Time.timeScale = deltaMovement.magnitude;
-        Time.fixedDeltaTime *= Time.timeScale;
+        GameManager.TimeScale = deltaJoystick.magnitude;
     }
 
     private void Rotate()

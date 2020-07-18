@@ -8,6 +8,6 @@ public class AIController : MonoBehaviour
 
     void Update()
     {
-        transform.position += velocity * Time.deltaTime;
+        transform.position += velocity * Time.deltaTime * GameManager.TimeScale;
     }
 }
