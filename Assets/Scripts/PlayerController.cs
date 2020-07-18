@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
     private void Rotate()
     {
-        float newY = 0;
+        float newY = transform.eulerAngles.y;
         if (Application.platform == RuntimePlatform.WindowsEditor)
         {
             if (Input.GetKey(KeyCode.LeftArrow))

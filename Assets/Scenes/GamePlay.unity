@@ -431,6 +431,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 510413351, guid: 8512951b24caa684e9f49147b2953daf, type: 3}
+      propertyPath: m_Name
+      value: Enemy1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1797129654, guid: 8512951b24caa684e9f49147b2953daf, type: 3}
+      propertyPath: m_Name
+      value: Enemies
+      objectReference: {fileID: 0}
     - target: {fileID: 947266301661944986, guid: 8512951b24caa684e9f49147b2953daf,
         type: 3}
       propertyPath: m_Name
@@ -491,10 +499,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4373825801874686973, guid: 8512951b24caa684e9f49147b2953daf,
+        type: 3}
+      propertyPath: m_Name
+      value: Enemy2
+      objectReference: {fileID: 0}
     - target: {fileID: 7276832205436406920, guid: 8512951b24caa684e9f49147b2953daf,
         type: 3}
       propertyPath: velocity.z
       value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7784484973380453957, guid: 8512951b24caa684e9f49147b2953daf,
+        type: 3}
+      propertyPath: m_Name
+      value: Enemy3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8512951b24caa684e9f49147b2953daf, type: 3}
