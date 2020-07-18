@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     {
         _cameraY = GetCameraRotation();
 
-        Camera.main.transform.eulerAngles = Vector3.up * _cameraY;
+        transform.eulerAngles = Vector3.up * _cameraY;
     }
 
     private float GetCameraRotation()
