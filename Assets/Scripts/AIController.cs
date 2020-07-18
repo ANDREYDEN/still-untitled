@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AIController : MonoBehaviour
 {
-    private Vector3 velocity = new Vector3(0, 0, -20f);
+    public Vector3 velocity;
 
     void Update()
     {

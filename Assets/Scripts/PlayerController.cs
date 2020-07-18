@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    const float DELTA_Y = 1f;
-    const float MOVEMENT_SENSITIVITY = 0.1f;
+    [Range(0, 2)]
+    public float rotationSpeed;
+    [Range(0, 1)]
+    public float movementSpeed;
 
     public VariableJoystick joystick;
 
@@ -14,13 +16,18 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        Vector3 deltaMovement = transform.TransformDirection(new Vector3(joystick.Horizontal, 0, joystick.Vertical) * MOVEMENT_SENSITIVITY);
-        transform.position += deltaMovement;
-        Time.timeScale = deltaMovement.magnitude;
-        Time.fixedDeltaTime *= Time.timeScale;
+        Vector3 deltaMovement = transform.TransformDirection(new Vector3(joystick.Horizontal, 0, joystick.Vertical) * movementSpeed);
+        Move(deltaMovement);
 
         _cameraY = GetCameraRotation();
         transform.eulerAngles = Vector3.up * _cameraY;
+    }
+
+    private void Move(Vector3 deltaMovement)
+    {
+        transform.position += deltaMovement;
+        Time.timeScale = deltaMovement.magnitude;
+        Time.fixedDeltaTime *= Time.timeScale;
     }
 
     private float GetCameraRotation()
@@ -29,11 +36,11 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.LeftArrow))
             {
-                return _cameraY - DELTA_Y;
+                return _cameraY - rotationSpeed;
             }
             if (Input.GetKey(KeyCode.RightArrow))
             {
-                return _cameraY + DELTA_Y;
+                return _cameraY + rotationSpeed;
             }
         }
         if (Application.platform == RuntimePlatform.Android)
