@@ -1,15 +1,21 @@
-﻿using System.Collections;
+﻿using System.CodeDom;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     const float DELTA_Y = 1f;
+    const float MOVEMENT_SENSITIVITY = 0.1f;
+
+    public VariableJoystick joystick;
+
     private float _cameraY = 0;
 
     void Update()
     {
         _cameraY = GetCameraRotation();
+        transform.position += transform.TransformDirection(new Vector3(joystick.Horizontal, 0, joystick.Vertical) * MOVEMENT_SENSITIVITY);
 
         transform.eulerAngles = Vector3.up * _cameraY;
     }
