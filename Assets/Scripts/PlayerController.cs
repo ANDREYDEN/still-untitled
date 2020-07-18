@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public VariableJoystick joystick;
+
     const float DELTA_Y = 1f;
     private float _cameraY = 0;
 
     void Update()
     {
         _cameraY = GetCameraRotation();
+        transform.position += new Vector3(joystick.Horizontal, 0, joystick.Vertical);
 
         transform.eulerAngles = Vector3.up * _cameraY;
     }
