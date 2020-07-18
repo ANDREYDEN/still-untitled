@@ -14,9 +14,12 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        _cameraY = GetCameraRotation();
-        transform.position += transform.TransformDirection(new Vector3(joystick.Horizontal, 0, joystick.Vertical) * MOVEMENT_SENSITIVITY);
+        Vector3 deltaMovement = transform.TransformDirection(new Vector3(joystick.Horizontal, 0, joystick.Vertical) * MOVEMENT_SENSITIVITY);
+        transform.position += deltaMovement;
+        Time.timeScale = deltaMovement.magnitude;
+        Time.fixedDeltaTime *= Time.timeScale;
 
+        _cameraY = GetCameraRotation();
         transform.eulerAngles = Vector3.up * _cameraY;
     }
 
