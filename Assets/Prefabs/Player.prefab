@@ -108,6 +108,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c64f7123ba063244e8c0f6978325e0b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationSpeed: 1
+  movementSpeed: 0.1
+  joystick: {fileID: 0}
 --- !u!1001 &8953559350538577008
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -12,8 +12,6 @@ public class PlayerController : MonoBehaviour
 
     public VariableJoystick joystick;
 
-    private float _cameraY = 0;
-
     void Update()
     {
         Move();

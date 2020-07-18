@@ -5,6 +5,6 @@ public class ZenjectHelper : MonoInstaller
 {
     public override void InstallBindings()
     {
-        Container.Bind<PlayerController>().FromComponentInHierarchy().AsSingle().NonLazy();
+        Container.Bind<Player>().FromComponentInHierarchy().AsSingle().NonLazy();
     }
 }

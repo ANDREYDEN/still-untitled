@@ -9,7 +9,7 @@ public class EnemyController : MonoBehaviour
     public float velocity;
 
     [Inject]
-    PlayerController player;
+    Player player;
 
     void Update()
     {
