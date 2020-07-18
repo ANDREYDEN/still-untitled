@@ -34,11 +34,11 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.LeftArrow))
             {
-                newY = transform.eulerAngles.y + rotationSpeed;
+                newY = transform.eulerAngles.y - rotationSpeed;
             }
             if (Input.GetKey(KeyCode.RightArrow))
             {
-                newY = transform.eulerAngles.y - rotationSpeed;
+                newY = transform.eulerAngles.y + rotationSpeed;
             }
         }
         if (Application.platform == RuntimePlatform.Android)

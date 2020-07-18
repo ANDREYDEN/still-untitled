@@ -439,6 +439,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemies
       objectReference: {fileID: 0}
+    - target: {fileID: 645294032333947114, guid: 8512951b24caa684e9f49147b2953daf,
+        type: 3}
+      propertyPath: pauseBetweenShots
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 947266301661944986, guid: 8512951b24caa684e9f49147b2953daf,
         type: 3}
       propertyPath: m_Name
@@ -504,10 +509,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy2
       objectReference: {fileID: 0}
+    - target: {fileID: 6363149984646907218, guid: 8512951b24caa684e9f49147b2953daf,
+        type: 3}
+      propertyPath: pauseBetweenShots
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7276832205436406920, guid: 8512951b24caa684e9f49147b2953daf,
         type: 3}
       propertyPath: velocity.z
       value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7276832205436406920, guid: 8512951b24caa684e9f49147b2953daf,
+        type: 3}
+      propertyPath: pauseBetweenShots
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7784484973380453957, guid: 8512951b24caa684e9f49147b2953daf,
         type: 3}
