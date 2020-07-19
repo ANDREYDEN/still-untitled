@@ -5,10 +5,8 @@ using Zenject;
 
 public class EnemyController : MonoBehaviour
 {
-    [Range(1, 10)]
+    [Range(0, 5)]
     public float velocity;
-    public float gunHeight;
-    public float gunPower;
 
     [Inject] Player player;
 

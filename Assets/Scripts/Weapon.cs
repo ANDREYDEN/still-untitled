@@ -38,6 +38,6 @@ public class Weapon : MonoBehaviour
                                                                                                          spawnPoint,
                                                                                                          Quaternion.identity,
                                                                                                          _missileParent.transform);
-        missileController.direction = player.transform.position - transform.position;
+        missileController.transform.LookAt(player.transform);
     }
 }
