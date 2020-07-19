@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
         Vector3 deltaJoystick = new Vector3(joystick.Horizontal, 0, joystick.Vertical);
         Vector3 deltaMovement = transform.TransformDirection(deltaJoystick * movementSpeed * Time.fixedDeltaTime);
 
-        _rigidBody.AddForce(deltaMovement);
+        _rigidBody.AddRelativeForce(deltaJoystick * movementSpeed * Time.fixedDeltaTime);
         GameManager.TimeScale = deltaJoystick.magnitude;
     }
 
