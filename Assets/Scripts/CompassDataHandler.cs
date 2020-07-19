@@ -2,18 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
+using TMPro;
 
 public class CompassDataHandler : MonoBehaviour
 {
     public float prevAngle;
     private Compass compass;
-    private const int CheckTimestilldirection = 5;
     public float deltaAngle;
-    private Vector3 angle;
-    private float speed;
 
-    [Inject] Player player;
+    private float prev;
+
+    public GameObject player;
+
+    public TMP_Text textComponent;
+    private float dest;
     [Inject] SignalBus _signalBus;
+
     [Inject] 
     private void OnInject()
     {
@@ -25,84 +29,35 @@ public class CompassDataHandler : MonoBehaviour
     {
         compass = Input.compass;
         prevAngle = compass.trueHeading;
-
-        StartCoroutine(findDirection());
+        prev = compass.trueHeading;
+        StartCoroutine(checkMovement());
     }
 
-
-    IEnumerator findDirection()
+    IEnumerator checkMovement()
     {
-        float dirSpeed;
-        float[] allAngles = new float[CheckTimestilldirection];
-        while (CompassInit.compassInitialized)
+        while (Mathf.Abs(compass.trueHeading - prev) < 1)
         {
-            dirSpeed = 0;
-            for (int i = 0; i < CheckTimestilldirection; i++)
-            {
-                if(compass.trueHeading - prevAngle > 3 || compass.trueHeading - prevAngle < -3)             // neglects litle changes
-                {
-                    allAngles[i] = compass.trueHeading;
-                    dirSpeed += compass.trueHeading - prevAngle;
-                    yield return new WaitForEndOfFrame();
-                }
-                
-            }
-            speed = allAngles[0];
-            for(int i = 1; i < allAngles.Length; i++)
-            {
-                if (dirSpeed > 0)
-                {
-                    if (allAngles[i] - prevAngle > speed)
-                    {
-                        speed = allAngles[i] - prevAngle;
-                        prevAngle = allAngles[i];
-                    }
-                }
-                else if (dirSpeed < 0)
-                {
-                    if (allAngles[i] - prevAngle < speed)
-                    {
-                        speed = allAngles[i] - prevAngle;
-                        prevAngle = allAngles[i];
-                    }
-                }
-                else
-                {
-                    speed = 0;
-                }
-            }
+            yield return new WaitForSeconds(0.3f);
+        }
             
-            angle = new Vector3(0, dirSpeed, 0);
-            //StartCoroutine(StartCameraMovement(angle, speed));
-            yield return new WaitForEndOfFrame();
-        }
-           
-        
+        deltaAngle = compass.trueHeading - prev;
+        textComponent.text = " heading " + deltaAngle.ToString();
+        dest = player.transform.eulerAngles.y + deltaAngle;
+        yield return new WaitUntil(() => Mathf.Abs(dest - player.transform.eulerAngles.y) < 10);
     }
-    IEnumerator StartCameraMovement(Vector3 angle, float speed)
-    {
-        while ((player.transform.eulerAngles.y < angle.y + deltaAngle) && (player.transform.eulerAngles.y > angle.y - deltaAngle))
-        {
-            player.transform.eulerAngles += angle.normalized * speed * Time.deltaTime;
-            yield return new WaitForEndOfFrame();
-        }
-        
-    }
-    // Start is called before the first frame update
+ 
     void Start()
     {
-        
+        dest = player.transform.eulerAngles.y;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (CompassInit.compassInitialized)
         {
-            if((player.transform.eulerAngles.y < player.transform.eulerAngles.y + angle.y + deltaAngle) && (player.transform.eulerAngles.y > player.transform.eulerAngles.y + angle.y - deltaAngle))
-            {
-                player.transform.eulerAngles += angle.normalized * speed * Time.deltaTime;
-            }
+            player.transform.eulerAngles = Vector3.Lerp(player.transform.eulerAngles, Vector3.up * dest, Time.deltaTime);
+            
+            //player.transform.eulerAngles += angle.normalized * speed * Time.deltaTime;
         }
     }
 }

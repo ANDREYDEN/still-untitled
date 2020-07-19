@@ -10,6 +10,6 @@ public class ShowDeltaAngle : MonoBehaviour
 
     private void Update()
     {
-        textComponent.text = (compassDataHandler.prevAngle).ToString();
+        textComponent.text = (Input.compass.trueHeading).ToString();
     }
 }
