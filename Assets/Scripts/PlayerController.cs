@@ -5,38 +5,53 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    const float DELTA_Y = 1f;
-    const float MOVEMENT_SENSITIVITY = 0.1f;
+    private Rigidbody _rigidBody;
 
+    [Range(0, 2)]
+    public float rotationSpeed;
+    [Range(0, 1000)]
+    public float movementSpeed;
     public VariableJoystick joystick;
 
-    private float _cameraY = 0;
-
-    void Update()
+    private void Start()
     {
-        _cameraY = GetCameraRotation();
-        transform.position += transform.TransformDirection(new Vector3(joystick.Horizontal, 0, joystick.Vertical) * MOVEMENT_SENSITIVITY);
-
-        transform.eulerAngles = Vector3.up * _cameraY;
+        _rigidBody = GetComponent<Rigidbody>();
     }
 
-    private float GetCameraRotation()
+    void FixedUpdate()
     {
+        Move();
+        Rotate();
+    }
+
+    private void Move()
+    {
+        Vector3 deltaJoystick = new Vector3(joystick.Horizontal, 0, joystick.Vertical);
+        Vector3 deltaMovement = transform.TransformDirection(deltaJoystick * movementSpeed * Time.fixedDeltaTime);
+
+        _rigidBody.AddForce(deltaMovement);
+        GameManager.TimeScale = deltaJoystick.magnitude;
+    }
+
+    private void Rotate()
+    {
+        float newY = transform.eulerAngles.y;
         if (Application.platform == RuntimePlatform.WindowsEditor)
         {
             if (Input.GetKey(KeyCode.LeftArrow))
             {
-                return _cameraY - DELTA_Y;
+                newY = transform.eulerAngles.y - rotationSpeed;
             }
             if (Input.GetKey(KeyCode.RightArrow))
             {
-                return _cameraY + DELTA_Y;
+                newY = transform.eulerAngles.y + rotationSpeed;
             }
         }
         if (Application.platform == RuntimePlatform.Android)
         {
-            return Input.compass.magneticHeading;
+            newY = Input.compass.magneticHeading;
         }
-        return _cameraY;
+        
+        transform.eulerAngles = Vector3.up * newY;
     }
 }
