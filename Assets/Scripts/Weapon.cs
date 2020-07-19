@@ -10,7 +10,6 @@ public class Weapon : MonoBehaviour
 
     public GameObject missileResource;
     public float pauseBetweenShots;
-    public float power;
 
     [Inject] Player player;
     [Inject] DiContainer Container;
@@ -34,12 +33,11 @@ public class Weapon : MonoBehaviour
 
     private void Shoot()
     {
-        Vector3 bulletSpawn = transform.position;
-        BulletController bulletController = Container.InstantiatePrefabForComponent<BulletController>(missileResource,
-                                                                                                      bulletSpawn,
-                                                                                                      Quaternion.identity,
-                                                                                                      _missileParent.transform);
-        bulletController.direction = player.transform.position - transform.position;
-        bulletController.velocity = power;
+        Vector3 spawnPoint = transform.position;
+        MissileController missileController = Container.InstantiatePrefabForComponent<MissileController>(missileResource,
+                                                                                                         spawnPoint,
+                                                                                                         Quaternion.identity,
+                                                                                                         _missileParent.transform);
+        missileController.direction = player.transform.position - transform.position;
     }
 }
