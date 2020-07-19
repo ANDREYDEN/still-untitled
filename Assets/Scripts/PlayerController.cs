@@ -5,14 +5,20 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    private Rigidbody _rigidBody;
+
     [Range(0, 2)]
     public float rotationSpeed;
-    [Range(0, 1)]
+    [Range(0, 1000)]
     public float movementSpeed;
-
     public VariableJoystick joystick;
 
-    void Update()
+    private void Start()
+    {
+        _rigidBody = GetComponent<Rigidbody>();
+    }
+
+    void FixedUpdate()
     {
         Move();
         Rotate();
@@ -21,9 +27,9 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
         Vector3 deltaJoystick = new Vector3(joystick.Horizontal, 0, joystick.Vertical);
-        Vector3 deltaMovement = transform.TransformDirection(deltaJoystick * movementSpeed);
+        Vector3 deltaMovement = transform.TransformDirection(deltaJoystick * movementSpeed * Time.fixedDeltaTime);
 
-        transform.position += deltaMovement;
+        _rigidBody.AddForce(deltaMovement);
         GameManager.TimeScale = deltaJoystick.magnitude;
     }
 
