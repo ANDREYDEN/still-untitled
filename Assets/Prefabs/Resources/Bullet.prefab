@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8978033351655114909}
   - component: {fileID: 4834466369598199561}
   - component: {fileID: 7439827589363750817}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,3 +108,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 0, z: 0}
   velocity: 20
+  despawnRadius: 100
