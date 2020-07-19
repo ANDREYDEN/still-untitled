@@ -47,10 +47,7 @@ public class PlayerController : MonoBehaviour
                 newY = transform.eulerAngles.y + rotationSpeed;
             }
         }
-        if (Application.platform == RuntimePlatform.Android)
-        {
-            newY = Input.compass.magneticHeading;
-        }
+
         
         transform.eulerAngles = Vector3.up * newY;
     }
