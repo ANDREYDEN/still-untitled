@@ -45,9 +45,7 @@ public class PlayerController : MonoBehaviour
             {
                 newY = transform.eulerAngles.y + rotationSpeed;
             }
+            transform.eulerAngles = Vector3.up * newY;
         }
-
-        
-        transform.eulerAngles = Vector3.up * newY;
     }
 }

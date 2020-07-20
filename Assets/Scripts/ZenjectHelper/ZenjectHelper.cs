@@ -7,6 +7,7 @@ public class ZenjectHelper : MonoInstaller
     {
         Container.DeclareSignal<TestSignal>();
         Container.DeclareSignal<CompassInitiated>();
+        Container.DeclareSignal<GameEnded>();
 
         SignalBusInstaller.Install(Container);
 

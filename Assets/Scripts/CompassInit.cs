@@ -31,7 +31,6 @@ public class CompassInit : MonoBehaviour
         Input.compass.enabled = true;
         compassInitialized = true;
         _signalBus.Fire(new CompassInitiated());
-        Debug.Log("Initialized location, compass");
     }
 
 }

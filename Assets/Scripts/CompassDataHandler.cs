@@ -6,15 +6,8 @@ using TMPro;
 
 public class CompassDataHandler : MonoBehaviour
 {
-    public float prevAngle;
-    private Compass compass;
-    public float deltaAngle;
-
-    private float prev;
-
     public GameObject player;
 
-    public TMP_Text textComponent;
     private float dest;
     [Inject] SignalBus _signalBus;
 
@@ -24,40 +17,29 @@ public class CompassDataHandler : MonoBehaviour
         _signalBus.Subscribe<CompassInitiated>(OnCompassInitialized);
     }
 
+    void Start()
+    {
+        dest = Input.compass.trueHeading;
+        StartCoroutine(checkMovement());
+    }
     
     private void OnCompassInitialized()
     {
-        compass = Input.compass;
-        prevAngle = compass.trueHeading;
-        prev = compass.trueHeading;
-        StartCoroutine(checkMovement());
+        //StartCoroutine(checkMovement());
     }
 
     IEnumerator checkMovement()
     {
-        while (Mathf.Abs(compass.trueHeading - prev) < 1)
-        {
-            yield return new WaitForSeconds(0.3f);
-        }
-            
-        deltaAngle = compass.trueHeading - prev;
-        textComponent.text = " heading " + deltaAngle.ToString();
-        dest = player.transform.eulerAngles.y + deltaAngle;
-        yield return new WaitUntil(() => Mathf.Abs(dest - player.transform.eulerAngles.y) < 10);
-    }
- 
-    void Start()
-    {
-        dest = player.transform.eulerAngles.y;
+        yield return new WaitUntil(() => Mathf.Abs(Input.compass.trueHeading - player.transform.eulerAngles.y) > 10);
+        dest = Input.compass.trueHeading;
     }
 
     void Update()
     {
-        if (CompassInit.compassInitialized)
-        {
-            player.transform.eulerAngles = Vector3.Lerp(player.transform.eulerAngles, Vector3.up * dest, Time.deltaTime);
-            
-            //player.transform.eulerAngles += angle.normalized * speed * Time.deltaTime;
-        }
+        //if (Time.time > 20)
+        //{
+            dest = (int)(Input.compass.trueHeading / 10) * 10;
+        //}
+        player.transform.eulerAngles = Vector3.Lerp(player.transform.eulerAngles, Vector3.up * dest, Time.deltaTime);
     }
 }
