@@ -32,5 +32,4 @@ public class CompassInit : MonoBehaviour
         compassInitialized = true;
         _signalBus.Fire(new CompassInitiated());
     }
-
 }
