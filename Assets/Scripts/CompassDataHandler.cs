@@ -36,10 +36,13 @@ public class CompassDataHandler : MonoBehaviour
 
     void Update()
     {
-        //if (Time.time > 20)
-        //{
-            dest = (int)(Input.compass.trueHeading / 10) * 10;
-        //}
-        player.transform.eulerAngles = Vector3.Lerp(player.transform.eulerAngles, Vector3.up * dest, Time.deltaTime);
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            //if (Time.time > 20)
+            //{
+                dest = (int)(Input.compass.trueHeading / 10) * 10;
+            //}
+            player.transform.eulerAngles = Vector3.Lerp(player.transform.eulerAngles, Vector3.up * dest, Time.deltaTime);
+        }
     }
 }

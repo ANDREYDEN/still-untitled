@@ -11,7 +11,9 @@ public class TestSignal
     }
 }
 
-public class CompassInitiated
-{
+public class CompassInitiated {}
 
+public class GameEnded
+{
+    public bool won;
 }

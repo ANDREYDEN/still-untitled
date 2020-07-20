@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 7492952378385419602}
   - component: {fileID: 5654170740494107592}
   - component: {fileID: 5891252317833479100}
+  - component: {fileID: 5826848035281375059}
   m_Layer: 0
   m_Name: Arrow
-  m_TagString: Untagged
+  m_TagString: Harmful
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93,6 +94,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb3b07bb96337294aac601fbbe8472c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: {x: 0, y: 0, z: 0}
   velocity: 10
   despawnRadius: 100
+--- !u!64 &5826848035281375059
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2250980090028866327}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2534964839176971238, guid: 2e155b58c292bfb4b8e28f08acf5d76d, type: 3}
