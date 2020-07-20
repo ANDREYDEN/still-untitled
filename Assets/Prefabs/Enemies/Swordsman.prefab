@@ -110,6 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: 1
+  visibleRadius: 20
 --- !u!1001 &2676994374326981872
 PrefabInstance:
   m_ObjectHideFlags: 0
